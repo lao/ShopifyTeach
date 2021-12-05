@@ -1,0 +1,33 @@
+{
+  "name": "nextjs-with-styled-components-typescript",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.7.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/icons-material": "^5.2.0",
+    "@mui/material": "^5.2.2",
+    "@mui/styled-engine-sc": "latest",
+    "next": "latest",
+    "next-transpile-modules": "latest",
+    "notion-client": "^4.11.1",
+    "notion-utils": "^4.10.0",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-is": "latest",
+    "react-notion-x": "^4.11.3",
+    "styled-components": "latest"
+  },
+  "devDependencies": {
+    "@types/react": "latest",
+    "@types/styled-components": "latest",
+    "babel-plugin-styled-components": "latest",
+    "typescript": "latest"
+  }
+}
