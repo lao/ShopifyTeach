@@ -89,8 +89,6 @@ export default function NotionPage({ recordMap, title }: any) {
           href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
       </Head>
-      <ResponsiveAppBar />
-
       <NotionRenderer
         recordMap={notionRecordMap}
         fullPage={true}

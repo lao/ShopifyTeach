@@ -5,6 +5,7 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import theme from '../src/theme';
 import '../src/global.css'
+import ResponsiveAppBar from '../src/ResponsiveAppBar';
 
 export default function MyApp(props: AppProps) {
   const { Component, pageProps } = props;
@@ -15,6 +16,8 @@ export default function MyApp(props: AppProps) {
         <link href="/favicon.ico" rel="icon" />
         <meta content="minimum-scale=1, initial-scale=1, width=device-width" name="viewport" />
       </Head>
+      <ResponsiveAppBar />
+
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Component {...pageProps} />
