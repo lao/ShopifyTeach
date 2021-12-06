@@ -3,7 +3,7 @@ import React, { useState } from "react";
 //Material UI
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
-
+import Box from "@mui/material/Box";
 
 import Editor, { DiffEditor, useMonaco, loader } from "@monaco-editor/react"; //Monaco Editor
 import { Liquid } from "liquidjs"; //Liquid Javascript module
@@ -22,7 +22,6 @@ const DEFAULT_VALUE = `
   {% endcapture %}
 
   {{ about_me }}
-
 `;
 
 const INSTRUCTION_VALUE = `
@@ -60,22 +59,26 @@ export default function QuizzEnv() {
 
   return (
     <Grid container sx={{ my: 1}}>
-      <Grid item xs={3} >
+      <Grid item xs={3} padding={2}>
         {INSTRUCTION_VALUE}
       </Grid>
-      <Grid item xs={6} sx={{ border: "1px solid grey" }}>
+      <Grid item xs={6} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Button size="small" variant="contained" color="primary" onClick={runCode}>
+            Run
+        </Button>
         <Editor
-          height="90vh"
+          height="85vh"
+          theme="vs-dark"
           defaultLanguage="liquid"
           defaultValue={DEFAULT_VALUE}
           onChange={handleEditorChange}
         />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={3} padding={2} >
+        <Box mt={2} sx={{ maxHeight: 60 }}>
+          Results
+        </Box>
         <p id="run_results">{liquidHtml}</p>
-        <Button variant="contained" onClick={runCode}>
-          Run
-        </Button>
       </Grid>
     </Grid>
   );
