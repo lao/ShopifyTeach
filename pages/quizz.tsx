@@ -9,28 +9,22 @@ export default function About() {
     document.getElementById("result").innerHTML = value.replace("<div", "<br").replace("</div>", "");
   }
 
-  return (
-    <Container maxWidth="xl">
-      <Box sx={{ my: 4, border: '1px solid grey' }}>
-        <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-          <Grid item xs={4}>
-            instructions
-          </Grid>
-          <Grid item xs={8}>
-            <Editor height="50vh"
-            defaultLanguage="liquid"
-            defaultValue="//code here"
-            onChange={handleEditorChange}
-          />
-          </Grid>
-          <Grid item xs={4}>
-            tips
-          </Grid>
-          <Grid item xs={8}>
-            results
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
-  );
+return (
+  <Grid container sx={{ my: 1}}>
+    <Grid item xs="auto">
+      instructions here
+    </Grid>
+    <Grid item xs={6} sx={{border: '1px solid grey'}} >
+        <Editor height="90vh"
+        defaultLanguage="liquid"
+        defaultValue="{% comment %}{% endcomment %}"
+        onChange={handleEditorChange}
+      />
+    </Grid>
+    <Grid item xs>
+      results
+    </Grid>
+  </Grid>
+);
+
 }
