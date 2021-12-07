@@ -58,24 +58,31 @@ export default function QuizzEnv() {
   }
 
   return (
-    <Grid container sx={{ my: 1}}>
-      <Grid item xs={3} padding={2}>
-        {INSTRUCTION_VALUE}
+    <Grid container sx={{ minHeight: '100%'}} rowSpacing={1} mt={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid item xs={4} >
+        <Box ml={1}>
+          {INSTRUCTION_VALUE}
+          </Box>
       </Grid>
-      <Grid item xs={6} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid item xs={8}>
         <Button size="small" variant="contained" color="primary" onClick={runCode}>
             Run
         </Button>
         <Editor
-          height="85vh"
+          height="50vh"
           theme="vs-dark"
           defaultLanguage="liquid"
           defaultValue={DEFAULT_VALUE}
           onChange={handleEditorChange}
         />
       </Grid>
-      <Grid item xs={3} padding={2} >
-        <Box mt={2} sx={{ maxHeight: 60 }}>
+      <Grid item xs={4}>
+        <Box ml={1} sx={{ height: 25 }} >
+          Test
+        </Box>
+      </Grid>
+      <Grid item xs={8}>
+        <Box sx={{ height: 25 }}>
           Results
         </Box>
         <p id="run_results">{liquidHtml}</p>
