@@ -16,25 +16,40 @@ const engine = new Liquid({
 });
 
 const DEFAULT_VALUE = `
+<<<<<<< HEAD
   {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit,' | split: ',' %}
+=======
+  {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit' | split: ',' %}
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
 
   {% for item in products %}
-    <p> {{ item }} </p>
+
   {% endfor %}
 `;
 
 const INSTRUCTION_VALUE = {
   text: `
+<<<<<<< HEAD
     There are some different ways to create a list of cards with product information. At the right side, you see an example using a FOR iteration declaration. Modify this code to show 10 cards using a different iteration declaration.
   `,
   code: `
     {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit,' | split: ',' %}
+=======
+    There are some different ways to create a list of cards with product information. At the right side, you see an example using a FOR iteration declaration. 
+    Modify this code to show these informations in Results panel.
+  `, 
+  code: `
+    {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit' | split: ',' %}
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
 
     {% for item in products %}
-      <p> {{ item }} </p>
-    {% endfor %}
 
+<<<<<<< HEAD
   `,
+=======
+    {% endfor %}
+  `
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
 };
 
 export default function QuizzEnv() {
@@ -48,21 +63,40 @@ export default function QuizzEnv() {
   }
 
   function runCode() {
+<<<<<<< HEAD
     let ctx = {
       extname: ".html",
       globals: { title: "Code runner" },
     };
+=======
+    // let ctx = {
+    //   extname: '.html',
+    //   globals: { title: 'Code runner' }
+    // };
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
 
     engine.parseAndRender(liquidTxt)
       .then(function (html) {
+<<<<<<< HEAD
       setLiquidHtml(html);
     });
+=======
+        setLiquidHtml(html);
+
+        // {{ item }}
+        let res = document.getElementById("result");
+        console.log(res.innerText.replaceAll('\n','').replaceAll(' ',''));
+        res.innerText.replaceAll('\n','').replaceAll(' ','') == 'TenisT-shirtJeansDressSuit' ? res.style.color = 'green' : res.style.color = 'red'
+        
+      });
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
   }
   const options = {
     miniMap: 'off',
     wordWrap: 'on',
   };
   return (
+<<<<<<< HEAD
     <Grid
       container
       sx={{ minHeight: "100%" }}
@@ -83,10 +117,17 @@ export default function QuizzEnv() {
             justifyContent: "space-around",
           }}
         >
+=======
+    <Grid container sx={{ minHeight: '100%'}} rowSpacing={1} mt={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+      <Grid item xs={4} >
+        <Box sx={{ typography: 'h6', ml: 1, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
           Instructions
         </Box>
-        <p>{INSTRUCTION_VALUE.text}</p>
-        {INSTRUCTION_VALUE.code}
+        <Box sx={{ ml: 1, width: 1, color: 'black', justifyContent: 'space-around'}}>
+          {INSTRUCTION_VALUE.text}<br/><br/>
+          {INSTRUCTION_VALUE.code}
+        </Box>        
       </Grid>
       <Grid item xs={6}>
         <Button
@@ -107,6 +148,7 @@ export default function QuizzEnv() {
         />
       </Grid>
       <Grid item xs={4}>
+<<<<<<< HEAD
         <Box
           sx={{
             typography: "h6",
@@ -138,6 +180,20 @@ export default function QuizzEnv() {
           Results
         </Box>
         <div dangerouslySetInnerHTML={{ __html: `${liquidHtml!=undefined?liquidHtml:''}` }} />
+=======
+        <Box sx={{ typography: 'h6', ml: 1, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
+          Tests
+        </Box>
+        <Box sx={{ ml: 1, width: 1, color: 'black', justifyContent: 'space-around'}}>
+          
+        </Box>
+      </Grid>
+      <Grid item xs={6}>
+        <Box sx={{ typography: 'h6', m: 0, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
+          Results
+        </Box>
+        <div id='result' dangerouslySetInnerHTML={{__html: `${liquidHtml!=undefined?liquidHtml:''}`}} />
+>>>>>>> 90f12e43d95225057cb91e1cb5dbdf04363ec754
       </Grid>
     </Grid>
   );
