@@ -15,26 +15,26 @@ const engine = new Liquid({
   extname: ".html",
   cache: false,
 });
-
+// <p> {{ item }} </p>
 const DEFAULT_VALUE = `
   {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit' | split: ',' %}
 
   {% for item in products %}
-    <p> {{ item }} </p>
+
   {% endfor %}
 `;
 
 const INSTRUCTION_VALUE = {
   text: `
-    There are some different ways to create a list of cards with product information. At the right side, you see an example using a FOR iteration declaration. Modify this code to show 10 cards using a different iteration declaration.
+    There are some different ways to create a list of cards with product information. At the right side, you see an example using a FOR iteration declaration. 
+    Modify this code to show these informations in Results panel.
   `, 
   code: `
     {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suite,' | split: ',' %}
 
     {% for item in products %}
-      <p> {{ item }} </p>
-    {% endfor %}
 
+    {% endfor %}
   `
 };
 
@@ -59,6 +59,9 @@ export default function QuizzEnv() {
       .then(function (html) {
         setLiquidHtml(html);
       });
+
+    // test results
+
   }
   const options={
     miniMap:'false',
@@ -67,11 +70,13 @@ export default function QuizzEnv() {
   return (
     <Grid container sx={{ minHeight: '100%'}} rowSpacing={1} mt={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={4} >
-        <Box sx={{ typography: 'h6', margin: 0, width: 1, borderBottom: 1, justifyContent: 'space-around'}}>
+        <Box sx={{ typography: 'h6', ml: 1, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
           Instructions
         </Box>
-        <p>{INSTRUCTION_VALUE.text}</p>
-        {INSTRUCTION_VALUE.code}
+        <Box sx={{ ml: 1, width: 1, color: 'black', justifyContent: 'space-around'}}>
+          {INSTRUCTION_VALUE.text}<br/><br/>
+          {INSTRUCTION_VALUE.code}
+        </Box>        
       </Grid>
       <Grid item xs={6}>
         <Button size="small" variant="contained" color="primary" onClick={runCode}>
@@ -87,18 +92,18 @@ export default function QuizzEnv() {
         />
       </Grid>
       <Grid item xs={4}>
-
-        <Box sx={{ typography: 'h6', margin: 0, width: 1, borderBottom: 1, justifyContent: 'space-around'}}>
-              Tests
+        <Box sx={{ typography: 'h6', ml: 1, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
+          Tests
         </Box>
-
+        <Box sx={{ ml: 1, width: 1, color: 'black', justifyContent: 'space-around'}}>
+          
+        </Box>
       </Grid>
       <Grid item xs={6}>
-
-        <Box sx={{ typography: 'h6', margin: 0, width: 1, borderBottom: 1, justifyContent: 'space-around'}}>
-              Results
-          </Box>
-        <div dangerouslySetInnerHTML={{__html: `${liquidHtml}`}} />
+        <Box sx={{ typography: 'h6', m: 0, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
+          Results
+        </Box>
+        <div dangerouslySetInnerHTML={{__html: `${liquidHtml!=undefined?liquidHtml:''}`}} />
       </Grid>
     </Grid>
   );
