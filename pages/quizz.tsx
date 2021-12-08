@@ -59,8 +59,8 @@ export default function QuizzEnv() {
     });
   }
   const options = {
-    miniMap: "false",
-    wordWrap: "on",
+    miniMap: 'off',
+    wordWrap: 'on',
   };
   return (
     <Grid
@@ -102,7 +102,7 @@ export default function QuizzEnv() {
           theme="vs-dark"
           defaultLanguage="liquid"
           defaultValue={DEFAULT_VALUE}
-          options={options}
+          options={{options}}
           onChange={handleEditorChange}
         />
       </Grid>
