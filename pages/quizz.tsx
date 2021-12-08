@@ -15,7 +15,7 @@ const engine = new Liquid({
   extname: ".html",
   cache: false,
 });
-// <p> {{ item }} </p>
+
 const DEFAULT_VALUE = `
   {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit' | split: ',' %}
 
@@ -30,7 +30,7 @@ const INSTRUCTION_VALUE = {
     Modify this code to show these informations in Results panel.
   `, 
   code: `
-    {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suite,' | split: ',' %}
+    {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit' | split: ',' %}
 
     {% for item in products %}
 
@@ -58,10 +58,13 @@ export default function QuizzEnv() {
       .parseAndRender(liquidTxt)
       .then(function (html) {
         setLiquidHtml(html);
+
+        // {{ item }}
+        let res = document.getElementById("result");
+        console.log(res.innerText.replaceAll('\n','').replaceAll(' ',''));
+        res.innerText.replaceAll('\n','').replaceAll(' ','') == 'TenisT-shirtJeansDressSuit' ? res.style.color = 'green' : res.style.color = 'red'
+        
       });
-
-    // test results
-
   }
   const options={
     miniMap:'false',
@@ -103,7 +106,7 @@ export default function QuizzEnv() {
         <Box sx={{ typography: 'h6', m: 0, width: 1, color: 'grey', borderBottom: 1, borderColor: 'grey', justifyContent: 'space-around'}}>
           Results
         </Box>
-        <div dangerouslySetInnerHTML={{__html: `${liquidHtml!=undefined?liquidHtml:''}`}} />
+        <div id='result' dangerouslySetInnerHTML={{__html: `${liquidHtml!=undefined?liquidHtml:''}`}} />
       </Grid>
     </Grid>
   );
