@@ -17,7 +17,7 @@ const engine = new Liquid({
 });
 
 const DEFAULT_VALUE = `
-  {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suite,' | split: ',' %}
+  {% assign products = 'Tenis,T-shirt,Jeans,Dress,Suit' | split: ',' %}
 
   {% for item in products %}
     <p> {{ item }} </p>
@@ -42,8 +42,6 @@ export default function QuizzEnv() {
   const [liquidTxt, setLiquidTxt] = useState(DEFAULT_VALUE);
   const [liquidHtml, setLiquidHtml] = useState();
 
-
-
   function handleEditorChange(value: any, event: any) {
     console.log(liquidTxt);
     console.log(value,event);
@@ -51,7 +49,6 @@ export default function QuizzEnv() {
   }
   
   function runCode() {
-    
     // let ctx = {
     //   extname: '.html',
     //   globals: { title: 'Code runner' }
@@ -70,7 +67,7 @@ export default function QuizzEnv() {
   return (
     <Grid container sx={{ minHeight: '100%'}} rowSpacing={1} mt={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
       <Grid item xs={4} >
-        <Box sx={{ typography: 'h6',p: 1, margin: 0, width: 1, bgcolor: '.main',boxShadow: 1, borderRadius: 1, justifyContent: 'space-around'}}>
+        <Box sx={{ typography: 'h6', margin: 0, width: 1, borderBottom: 1, justifyContent: 'space-around'}}>
           Instructions
         </Box>
         <p>{INSTRUCTION_VALUE.text}</p>
@@ -91,14 +88,14 @@ export default function QuizzEnv() {
       </Grid>
       <Grid item xs={4}>
 
-        <Box sx={{ typography: 'h6',p: 1, margin: 0, width: 1, bgcolor: '.main',boxShadow: 1, borderRadius: 1, justifyContent: 'space-around'}}>
+        <Box sx={{ typography: 'h6', margin: 0, width: 1, borderBottom: 1, justifyContent: 'space-around'}}>
               Tests
         </Box>
 
       </Grid>
       <Grid item xs={6}>
 
-        <Box sx={{ typography: 'h6',p: 1, margin: 0, width: 1, bgcolor: '.main',boxShadow: 1, borderRadius: 1, justifyContent: 'space-around'}}>
+        <Box sx={{ typography: 'h6', margin: 0, width: 1, borderBottom: 1, justifyContent: 'space-around'}}>
               Results
           </Box>
         <div dangerouslySetInnerHTML={{__html: `${liquidHtml}`}} />
